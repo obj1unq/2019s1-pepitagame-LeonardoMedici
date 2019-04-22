@@ -23,6 +23,16 @@ program PepitaGame {
 
 	keyboard.v().onPressDo { pepita.volaHacia(villaGesell) }
 	keyboard.b().onPressDo { pepita.volaHacia(buenosAires) }
+	
+	keyboard.m().onPressDo { pepita.volaA(manzana)  }
+	keyboard.m().onPressDo { pepita.come( manzana)  }
+	keyboard.m().onPressDo { game.removeVisual("manzana.png")}
+	keyboard.m().onPressDo { pepita.pepitaEstaGorda()  }
+	
+	keyboard.a().onPressDo { pepita.volaA(alpiste)  }
+	keyboard.a().onPressDo { pepita.come( alpiste)  }
+	keyboard.a().onPressDo { game.removeVisual("alpiste.png")}
+	keyboard.m().onPressDo { pepita.pepitaEstaGorda()  }
 
 	keyboard.up().onPressDo { pepita.move(pepita.position().up(1)) }
 	keyboard.down().onPressDo { pepita.move(pepita.position().down(1)) }
