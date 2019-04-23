@@ -23,7 +23,10 @@ program PepitaGame {
 	
 //  COLISIONES
     game.whenCollideDo(pepita, { ave => pepita.nuevaAmiga(ave) })
-    game.whenCollideDo(roque, { comida => roque.levantarComida()})
+    game.whenCollideDo(roque, { comida => comida.levantarComida(comida)})
+  //  game.whenCollideDo(manzana, { roque => game.removeVisual(manzana) })
+  //  game.whenCollideDo(alpiste, { roque => game.removeVisual(alpiste) })
+    
 
 //	TECLADO
 	keyboard.h().onPressDo { game.say(pepita, "Hola chiques!") }
@@ -33,11 +36,11 @@ program PepitaGame {
 	
 	keyboard.m().onPressDo { pepita.volaA(manzana)  }
 	keyboard.m().onPressDo { pepita.come( manzana)  }
-	keyboard.m().onPressDo { game.removeVisual("manzana.png")}
+	keyboard.m().onPressDo { game.removeVisual(manzana)}
 	
 	keyboard.a().onPressDo { pepita.volaA(alpiste)  }
 	keyboard.a().onPressDo { pepita.come( alpiste)  }
-	keyboard.a().onPressDo { game.removeVisual("alpiste.png")}
+	keyboard.a().onPressDo { game.removeVisual(alpiste)}
 	
 	//keyboard.up().onPressDo { pepita.move(pepita.position().up(1)) }
 	//keyboard.down().onPressDo { pepita.move(pepita.position().down(1)) }
