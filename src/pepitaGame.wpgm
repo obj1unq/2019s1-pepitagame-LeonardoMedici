@@ -22,11 +22,15 @@ program PepitaGame {
 	game.addVisual(roque)
 	
 //  COLISIONES
-    game.whenCollideDo(pepita, { ave => pepita.nuevaAmiga(ave) })
-    game.whenCollideDo(roque, { comida => comida.levantarComida(comida)})
-  //  game.whenCollideDo(manzana, { roque => game.removeVisual(manzana) })
-  //  game.whenCollideDo(alpiste, { roque => game.removeVisual(alpiste) })
-    
+   //game.whenCollideDo(pepita, { ave => pepita.nuevaAmiga(ave) })
+   //game.whenCollideDo(roque, { comida => comida.levantarComida(comida)})
+  // game.whenCollideDo(manzana, { roque => game.removeVisual(manzana) })
+  // game.whenCollideDo(alpiste, { roque => game.removeVisual(alpiste) })
+    game.whenCollideDo(alpiste, { alguien => alguien.collideWith(alpiste) })
+    game.whenCollideDo(manzana, { alguien => alguien.collideWith(manzana) })
+   // game.whenCollideDo(pepita, { alguien => alguien.saludar() })
+    game.whenCollideDo(roque, { alguien => alguien.saludar() })
+
 
 //	TECLADO
 	keyboard.h().onPressDo { game.say(pepita, "Hola chiques!") }
@@ -34,23 +38,26 @@ program PepitaGame {
 	keyboard.v().onPressDo { pepita.volaHacia(villaGesell) }
 	keyboard.b().onPressDo { pepita.volaHacia(buenosAires) }
 	
-	keyboard.m().onPressDo { pepita.volaA(manzana)  }
-	keyboard.m().onPressDo { pepita.come( manzana)  }
-	keyboard.m().onPressDo { game.removeVisual(manzana)}
+	//keyboard.m().onPressDo { pepita.volaA(manzana)  }
+	//keyboard.m().onPressDo { pepita.come( manzana)  }
+	//keyboard.m().onPressDo { game.removeVisual(manzana)}
 	
-	keyboard.a().onPressDo { pepita.volaA(alpiste)  }
-	keyboard.a().onPressDo { pepita.come( alpiste)  }
-	keyboard.a().onPressDo { game.removeVisual(alpiste)}
+	//keyboard.a().onPressDo { pepita.volaA(alpiste)  }
+	//keyboard.a().onPressDo { pepita.come( alpiste)  }
+	//keyboard.a().onPressDo { game.removeVisual(alpiste)}
 	
-	//keyboard.up().onPressDo { pepita.move(pepita.position().up(1)) }
-	//keyboard.down().onPressDo { pepita.move(pepita.position().down(1)) }
-	//keyboard.left().onPressDo { pepita.move(pepita.position().left(1)) }
-	//keyboard.right().onPressDo { pepita.move(pepita.position().right(1)) }
+	keyboard.w().onPressDo { pepita.move(pepita.position().up(1)) }
+	keyboard.s().onPressDo { pepita.move(pepita.position().down(1)) }
+	keyboard.a().onPressDo { pepita.move(pepita.position().left(1)) }
+	keyboard.d().onPressDo { pepita.move(pepita.position().right(1)) }
 
 	keyboard.up().onPressDo { roque.move(roque.position().up(1)) }
 	keyboard.down().onPressDo { roque.move(roque.position().down(1)) }
 	keyboard.left().onPressDo { roque.move(roque.position().left(1)) }
 	keyboard.right().onPressDo { roque.move(roque.position().right(1)) }
+	
+	keyboard.l().onPressDo { roque.dejaComida(alpiste) } 
+	keyboard.m().onPressDo { roque.dejaComida(manzana) }
 		
 //	START
 	game.start()

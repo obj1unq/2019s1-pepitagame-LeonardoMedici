@@ -3,13 +3,13 @@ import wollok.game.*
 
 object pepita {
 
-	var property energia = 100
+	var property energia = 150
 	var property ciudad = buenosAires
 	var amiga
 	var property position = game.at(3, 3)
 
 	method image() = if (energia > 100) {
-		"pepita-gorda-raw"
+		"pepita-gorda-raw.png"
 	} else {
 		"pepita.png"
 	}
@@ -25,6 +25,7 @@ object pepita {
 			self.move(unaCiudad.position())
 			ciudad = unaCiudad
 		}
+		
 	}
 
 	method volaA(unaComida) {
@@ -43,8 +44,13 @@ object pepita {
 		amiga = ave
 	}
 
-	method collideWith(persona) {
-		persona.alimentar(self)
+	method collideWith(comida){
+		self.come(comida)
+		game.removeVisual(comida)
+	}
+	method saludar(){
+		game.say(self, "Hola Roque!")
+		game.say(roque, "Hola Pepita!")
 	}
 
 }
@@ -55,6 +61,7 @@ object pepona {
 
 	method position() = game.at(2, 2)
 
+    method saludar(){}
 }
 
 object pipa {
@@ -63,6 +70,7 @@ object pipa {
 
 	method position() = game.at(2, 4)
 
+	method saludar(){}
 }
 
 object roque {
@@ -87,6 +95,15 @@ object roque {
 		} else { 
 			game.addVisualIn(mochila, posicionRandom)
 		}
+	}
+	method dejaComida(comida){
+		game.addVisualIn(comida, position)
+	}
+	method collideWith(algo){
+		
+	}
+	method saludar(){
+
 	}
 
 }
